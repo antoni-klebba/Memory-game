@@ -48,7 +48,8 @@ const clickCard = function () {
         activeCards[1] = activeCard;
         setTimeout(function () {
             if (activeCards[0].className === activeCards[1].className) {
-                activeCards.forEach(activeCard => activeCard.classList.add('off'))
+                activeCards.forEach(activeCard => activeCard.classList.add('off-transition'));
+                activeCards.forEach(activeCard => activeCard.classList.add('off'));
                 gameResult++;
                 cards = cards.filter(card => !card.classList.contains('off'));
                 if (gameResult == gamePairs) {
