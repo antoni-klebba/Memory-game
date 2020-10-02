@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 
+/* Variables */
 :root {
     --mainWidth: 90vw;
     --mainHeight: 45vh;
@@ -13,6 +14,8 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
 }
+
+/* main styles */
 
 main {
     box-sizing: content-box;
@@ -33,10 +36,9 @@ main {
     height: 33.33%;
     background-position: center;
     background-size: cover;
-    transition: 0.3s linear;
 }
 
-
+/* Button and range input */
 
 section {
     margin: var(--margin);
@@ -101,61 +103,12 @@ section .delay label {
     font-size: 20px;
 }
 
-@media (min-width: 1821px) {
-    :root {
-        --mainHeight: 55vh;
-    }
-
-    section .timer {
-        font-size: 60px;
-        padding: 50px;
-    }
-
-    section .startBtn button {
-        font-size: 32px;
-        padding: 20px 32px;
-        margin: 8vh auto;
-    }
-
-    section .delay label {
-        font-size: 32px;
-    }
+.delayTime {
+    width: 20px;
+    margin: 0 0 5px 5px;
 }
 
-@media (min-width: 1200px) and (max-width: 1820px) and (orientation: landscape) {
-    section .timer {
-        font-size: 50px;
-        padding: 35px;
-    }
-
-    section .startBtn button {
-        font-size: 28px;
-        padding: 16px 26px;
-        margin: 7vh auto;
-    }
-
-    section .delay label {
-        font-size: 28px;
-    }
-}
-
-@media (orientation: portrait) {
-    :root {
-        --mainHeight: 72vh;
-    }
-
-    .blocks div {
-        flex-basis: 30%;
-        height: 12vh;
-    }
-
-
-    section div {
-        flex-basis: 50%;
-        flex-wrap: wrap;
-    }
-}
-
+/* Image class  */
 .cheetah {
     background-image: url("img/cheetah.jpg");
 }
@@ -192,14 +145,20 @@ section .delay label {
     background-image: url("img/zebra.jpg");
 }
 
+/* Off and hidden Class */
 .off {
     transform: scale(0);
+}
+
+.off-transition {
+    transition: 0.3s ease;
 }
 
 .hidden {
     background-image: url("img/black.jpg");
 }
 
+/* Styles of range input */
 input[type=range] {
     -webkit-appearance: none;
     width: 40%;
@@ -297,7 +256,101 @@ input[type=range]:focus::-ms-fill-upper {
     background: rgb(255, 45, 45);
 }
 
-.delayTime {
-    width: 20px;
-    margin: 0 0 5px 5px;
+
+@media (min-width: 1821px) {
+    :root {
+        --mainHeight: 55vh;
+    }
+
+    section .timer {
+        font-size: 60px;
+        padding: 50px;
+    }
+
+    section .startBtn button {
+        font-size: 32px;
+        padding: 20px 32px;
+        margin: 8vh auto;
+    }
+
+    section .delay label {
+        font-size: 32px;
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1820px) and (orientation: landscape) {
+    section .timer {
+        font-size: 50px;
+        padding: 35px;
+    }
+
+    section .startBtn button {
+        font-size: 28px;
+        padding: 16px 26px;
+        margin: 7vh auto;
+    }
+
+    section .delay label {
+        font-size: 28px;
+    }
+}
+
+@media (orientation: portrait) {
+    :root {
+        --mainHeight: 72vh;
+    }
+
+    .blocks div {
+        flex-basis: 30%;
+        height: 12vh;
+    }
+
+
+    section .startBtn {
+        flex-basis: 30%;
+        flex-wrap: wrap;
+    }
+
+    section .delay {
+        flex-basis: 100%;
+    }
+
+    section .delay label {
+        font-size: 18px;
+        margin-top: 5px;
+    }
+}
+
+@media (max-width: 720px) {
+    section .delayTime {
+        font-size: 0.75em;
+    }
+
+    section .delay label {
+        font-size: 16px;
+        margin-top: 0px;
+    }
+
+    input[type=range]::-ms-track {
+        height: 5.8px;
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+        height: 5.8px;
+    }
+
+    input[type=range]::-moz-range-track {
+        height: 5.8px;
+    }
+
+    input[type=range]::-ms-thumb {
+        height: 25px;
+        width: 7px;
+    }
+
+    input[type=range]::-moz-range-thumb {
+        height: 25px;
+        width: 7px;
+    }
+
 }
