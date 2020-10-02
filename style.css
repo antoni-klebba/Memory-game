@@ -319,6 +319,10 @@ input[type=range]:focus::-ms-fill-upper {
         font-size: 18px;
         margin-top: 5px;
     }
+
+    section .timer {
+        font-size: 35px;
+    }
 }
 
 @media (max-width: 720px) {
@@ -329,6 +333,23 @@ input[type=range]:focus::-ms-fill-upper {
     section .delay label {
         font-size: 16px;
         margin-top: 0px;
+    }
+
+    section .timer {
+        font-size: 25px;
+        margin-right: 20px;
+    }
+
+    section div {
+        flex-direction: column;
+        flex-basis: 100%;
+        /* flex-wrap: wrap; */
+        justify-content: center;
+        align-items: flex-end;
+    }
+
+    input[type=range] {
+        width: 100%;
     }
 
     input[type=range]::-ms-track {
