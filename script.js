@@ -10,6 +10,7 @@ const activeCards = [];
 const gamePairs = cards.length / 2;
 let gameResult = 0;
 let delay = 2000;
+var startTime;
 
 const loadPage = () => cards.forEach(card => card.classList.add('hidden'))
 
@@ -28,6 +29,7 @@ const startGame = () => {
             cards.forEach(card => {
                 card.classList.add('hidden');
                 card.addEventListener('click', clickCard);
+                startTime = new Date().getTime();
             })
         }, delay)
     }
@@ -53,7 +55,7 @@ const clickCard = function () {
                 gameResult++;
                 cards = cards.filter(card => !card.classList.contains('off'));
                 if (gameResult == gamePairs) {
-                    clearInterval(idI)
+                    clearInterval(idI);
                 }
             } else {
                 activeCards.forEach(activeCard => activeCard.classList.add('hidden'))
@@ -61,34 +63,42 @@ const clickCard = function () {
             activeCard = "";
             activeCards.length = 0;
             cards.forEach(card => card.addEventListener('click', clickCard))
-        }, 500)
+        }, 450)
     }
 }
 
 const buttonTextContent = () => {
-    setTimeout(function () {
-        startReset.textContent = "Reset";
-        startReset.classList.add('reset');
-    }, delay)
+    startReset.textContent = "Reset";
+    startReset.classList.add('reset');
 }
 
-// Timer
-let time = 0; //dziesiętne sekundy
+// stopwatch
+const spanM = document.querySelector('span.minutes');
+const spanS = document.querySelector('span.seconds');
+const spanC = document.querySelector('span.centiseconds');
+
 let idI;
 
-const timer = () => {
-    if (startReset.classList.contains("reset")) document.location.reload(true);
-    else {
-        setTimeout(function () {
-            idI = setInterval(start, 100);
-        }, delay)
-    }
-    const start = () => {
-        time++;
-        panel.textContent = `${(time / 10).toFixed(1)} s`;
-    }
+const stopwatch = () => {
+    setTimeout(function () {
+        idI = setInterval(() => {
+            const nowTime = new Date().getTime();
+            const time = nowTime - startTime
+
+            let minutes = Math.floor(time / (1000 * 60));
+            minutes = minutes < 10 ? `0${minutes}` : minutes;
+            spanM.textContent = minutes;
+
+            let seconds = Math.floor(time / 1000 % 60);
+            seconds = seconds < 10 ? `0${seconds}` : seconds;
+            spanS.textContent = seconds;
+
+            let centiseconds = Math.floor(time / 10 % 100);
+            centiseconds = centiseconds < 10 ? `0${centiseconds}` : centiseconds;
+            spanC.textContent = centiseconds;
+        }, 10)
+    }, delay)
 }
-//End
 
 // Delay
 const input = document.querySelector('.delay input');
@@ -105,10 +115,7 @@ input.addEventListener('mousemove', handleUpdate)
 //End
 
 startReset.addEventListener('click', startGame);
-startReset.addEventListener('click', timer);
+startReset.addEventListener('click', stopwatch);
 startReset.addEventListener('click', buttonTextContent);
 
-
-// init();
-// timer();
 loadPage();
